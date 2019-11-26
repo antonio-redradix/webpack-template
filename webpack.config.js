@@ -31,13 +31,20 @@ module.exports = {
             {
                 test: /\.(scss|css)$/, // los ficheros .scss y .css activan esta regla
                 use: [
-                    // 3. crea un bundle de todos los ficheros .css (eliminar si usamos style-loader ya
+                    // 4. crea un bundle de todos los ficheros .css (eliminar si usamos style-loader ya
                     // que lo cargariamos enlazandolo en index.html)
                     MiniCssExtractPlugin.loader,  
 
-                    //'style-loader',     // 3. aplica los estilos (eliminar si usamos MiniCssExtractPlugin)
-                    'css-loader',       // 2. convierte los ficheros css a imports de JS
+                    //'style-loader',     // 4. aplica los estilos (eliminar si usamos MiniCssExtractPlugin)
+                    'css-loader',       // 3. convierte los ficheros css a imports de JS
+                    'postcss-loader',   // 2. Autoprefixer para añadir prefijos por compatibilidad
                     'sass-loader',      // 1. transpila de scss a css
+                ],
+            },
+            {
+                test: /\.(png|svg|jpg|gif)$/,
+                use: [
+                    'file-loader',
                 ],
             }
         ]
